@@ -1,0 +1,444 @@
+{
+    "defence": {
+        "fetched_at": "01 Jun 2026 15:20 UTC",
+        "source_url": "https://groww.in/mutual-funds/hdfc-defence-fund-direct-growth",
+        "data_source": "next_data",
+        "sections": {
+            "overview": {
+                "scheme_name": "HDFC Defence Fund Direct Growth",
+                "fund_name": "HDFC Defence Fund",
+                "category": "Equity",
+                "sub_category": "Thematic",
+                "plan_type": "Direct",
+                "scheme_type": "Growth",
+                "isin": "INF179KC1GI5",
+                "scheme_code": "151750",
+                "nav": "₹28.78",
+                "nav_date": "29 May 2026",
+                "aum": "₹9,123.61 Cr",
+                "groww_rating": "N/A",
+                "launch_date": "02 Jun 2023",
+                "source_url": "https://groww.in/mutual-funds/hdfc-defence-fund-direct-growth"
+            },
+            "expense_ratio": {
+                "value": "0.82%",
+                "note": "Lower expense ratio: 0.82%"
+            },
+            "exit_load": {
+                "description": "Exit load of 1%, if redeemed within 1 year",
+                "history": [
+                    {
+                        "description": "Exit load of 1%, if redeemed within 1 year",
+                        "effective_from": "19 May 2023"
+                    }
+                ]
+            },
+            "minimum_investment": {
+                "lumpsum": "₹100",
+                "sip": "₹100",
+                "additional": "₹100",
+                "sip_multiplier": "₹1"
+            },
+            "benchmark": {
+                "short_name": "Nifty India Defence TRI",
+                "full_name": "Nifty India Defence Total Return Index"
+            },
+            "tax": {
+                "stamp_duty": "0.005% (from July 1st, 2020)",
+                "lock_in": "None",
+                "is_elss": false,
+                "ltcg_note": "Long-term capital gains above ₹1.25 lakh taxed at 12.5% (equity funds).",
+                "stcg_note": "Short-term capital gains taxed at 20% (equity funds)."
+            },
+            "fund_management": {
+                "managers": [
+                    {
+                        "name": "Priya Ranjan",
+                        "since": "17 Apr 2025",
+                        "education": "Mr. Ranjan is B.E(Computer Science) and PGDBM (Finance)",
+                        "experience": "He has over 14 years of experience in equity research"
+                    },
+                    {
+                        "name": "Dhruv Muchhal",
+                        "since": "21 Jun 2023",
+                        "education": "Mr. Dhruv has done B.Com, CA and CFA",
+                        "experience": "Prior to joining HDFC MF,he has worked with Motilal Oswal Financial Services Ltd., Goldman Sachs, CRISIL Global Research & Analytics and Deloitte Haskins & Sells"
+                    },
+                    {
+                        "name": "Rahul Baijal",
+                        "since": "17 Apr 2025",
+                        "education": "Mr. Baijal has done PGDM(MBA) from IIM Calcutta and is an engineering graduate of Delhi college of Engineering",
+                        "experience": "Prior to joining HDFC Mutual Fund, he has worked with Sundaram Mutual Fund, Bharti AXA Life Insurance, TVF Capital, HSBC Securities, Credit Suisse Securities & Standard Chartered Bank"
+                    }
+                ]
+            },
+            "investment_objective": {
+                "text": "The scheme seeks to provide long-term capital appreciation by investing predominantly in equity and equity related securities of Defence & allied sector companies"
+            },
+            "fund_house": {
+                "name": "HDFC Mutual Fund",
+                "total_aum": "₹937,047.59 Cr",
+                "description": "HDFC Mutual Fund started their mutual fund on 30/06/2000 and its managing total assets of ₹2,70,046 Cr. Its ranked at 2 as per total assets at end of 30th Sep 2017",
+                "registrar": "CAMS",
+                "logo_url": "https://assets-netstorage.groww.in/mf-assets/logos/hdfc_groww.png",
+                "page_url": "https://groww.in/mutual-funds/amc/hdfc-mutual-funds"
+            }
+        }
+    },
+    "gold-etf": {
+        "fetched_at": "01 Jun 2026 15:20 UTC",
+        "source_url": "https://groww.in/mutual-funds/hdfc-gold-etf-fund-of-fund-direct-plan-growth",
+        "data_source": "next_data",
+        "sections": {
+            "overview": {
+                "scheme_name": "HDFC Gold ETF Fund of Fund Direct Plan Growth",
+                "fund_name": "HDFC Gold ETF Fund",
+                "category": "Commodities",
+                "sub_category": "Gold",
+                "plan_type": "Direct",
+                "scheme_type": "Growth",
+                "isin": "INF179K01VX0",
+                "scheme_code": "119132",
+                "nav": "₹48.49",
+                "nav_date": "29 May 2026",
+                "aum": "₹11,464.35 Cr",
+                "groww_rating": "3",
+                "launch_date": "01 Jan 2013",
+                "source_url": "https://groww.in/mutual-funds/hdfc-gold-etf-fund-of-fund-direct-plan-growth"
+            },
+            "expense_ratio": {
+                "value": "0.2%",
+                "note": "Lower expense ratio: 0.2%"
+            },
+            "exit_load": {
+                "description": "Exit load of 1%, if redeemed within 15 days",
+                "history": [
+                    {
+                        "description": "Exit load of 1%, if redeemed within 15 days",
+                        "effective_from": "05 Dec 2022"
+                    },
+                    {
+                        "description": "Exit load of 1%, if redeemed within 15 days",
+                        "effective_from": "05 Dec 2022"
+                    },
+                    {
+                        "description": "Exit load of 1%, if redeemed within 15 days",
+                        "effective_from": "05 Dec 2022"
+                    },
+                    {
+                        "description": "Exit load of 2% if redeemed within 6 months and 1% if redeemed after 6 months but within 1 year",
+                        "effective_from": "01 Jan 2013"
+                    }
+                ]
+            },
+            "minimum_investment": {
+                "lumpsum": "₹100",
+                "sip": "₹100",
+                "additional": "₹100",
+                "sip_multiplier": "₹1"
+            },
+            "benchmark": {
+                "short_name": "Domestic Price of Gold",
+                "full_name": "Domestic Price of Gold"
+            },
+            "tax": {
+                "stamp_duty": "0.005% (from July 1st, 2020)",
+                "lock_in": "None",
+                "is_elss": false,
+                "ltcg_note": "Tax treatment depends on holding period; consult a tax advisor.",
+                "stcg_note": "Short-term: taxed at slab rate."
+            },
+            "fund_management": {
+                "managers": [
+                    {
+                        "name": "Arun Agarwal",
+                        "since": "14 Feb 2023",
+                        "education": "Mr. Agarwal is a B.Com. and Chartered Accountant",
+                        "experience": "Prior to joining HDFC Asset Management Company Limited, he has worked with SBI Funds Management Pvt. Ltd., ICICI Bank Limited, UTI Asset Management Pvt. Ltd"
+                    },
+                    {
+                        "name": "Nandita Menezes",
+                        "since": "28 Mar 2025",
+                        "education": "CA (ICAI, INDIA), B.Com (University of Mumbai)",
+                        "experience": "Prior to joining HDFC AMC, she was associated with S.V. Ghatalia & Associates LLP"
+                    }
+                ]
+            },
+            "investment_objective": {
+                "text": "The Scheme seeks to generate capital appreciation by investing in units of HDFC Gold Exchange Traded Fund"
+            },
+            "fund_house": {
+                "name": "HDFC Mutual Fund",
+                "total_aum": "₹937,047.59 Cr",
+                "description": "HDFC Mutual Fund started their mutual fund on 30/06/2000 and its managing total assets of ₹2,70,046 Cr. Its ranked at 2 as per total assets at end of 30th Sep 2017",
+                "registrar": "CAMS",
+                "logo_url": "https://assets-netstorage.groww.in/mf-assets/logos/hdfc_groww.png",
+                "page_url": "https://groww.in/mutual-funds/amc/hdfc-mutual-funds"
+            }
+        }
+    },
+    "large-cap": {
+        "fetched_at": "01 Jun 2026 15:20 UTC",
+        "source_url": "https://groww.in/mutual-funds/hdfc-large-cap-fund-direct-growth",
+        "data_source": "next_data",
+        "sections": {
+            "overview": {
+                "scheme_name": "HDFC Large Cap Fund Direct Growth",
+                "fund_name": "HDFC Large Cap Fund",
+                "category": "Equity",
+                "sub_category": "Large Cap",
+                "plan_type": "Direct",
+                "scheme_type": "Growth",
+                "isin": "INF179K01YV8",
+                "scheme_code": "119018",
+                "nav": "₹1175.10",
+                "nav_date": "29 May 2026",
+                "aum": "₹38,121.27 Cr",
+                "groww_rating": "4",
+                "launch_date": "01 Jan 2013",
+                "source_url": "https://groww.in/mutual-funds/hdfc-large-cap-fund-direct-growth"
+            },
+            "expense_ratio": {
+                "value": "0.98%",
+                "note": "Lower expense ratio: 0.98%"
+            },
+            "exit_load": {
+                "description": "Exit load of 1% if redeemed within 1 year",
+                "history": [
+                    {
+                        "description": "Exit load of 1% if redeemed within 1 year",
+                        "effective_from": "08 May 2015"
+                    },
+                    {
+                        "description": "Exit load of 1% if redeemed within 18 months",
+                        "effective_from": "16 Feb 2015"
+                    },
+                    {
+                        "description": "Exit load of 1% if redeemed within 1 year",
+                        "effective_from": "01 Jan 2013"
+                    }
+                ]
+            },
+            "minimum_investment": {
+                "lumpsum": "₹100",
+                "sip": "₹100",
+                "additional": "₹100",
+                "sip_multiplier": "₹1"
+            },
+            "benchmark": {
+                "short_name": "NIFTY 100 TRI",
+                "full_name": "NIFTY 100 Total Return Index"
+            },
+            "tax": {
+                "stamp_duty": "0.005% (from July 1st, 2020)",
+                "lock_in": "None",
+                "is_elss": false,
+                "ltcg_note": "Long-term capital gains above ₹1.25 lakh taxed at 12.5% (equity funds).",
+                "stcg_note": "Short-term capital gains taxed at 20% (equity funds)."
+            },
+            "fund_management": {
+                "managers": [
+                    {
+                        "name": "Rahul Baijal",
+                        "since": "28 Jul 2022",
+                        "education": "Mr. Baijal has done PGDM(MBA) from IIM Calcutta and is an engineering graduate of Delhi college of Engineering",
+                        "experience": "Prior to joining HDFC Mutual Fund, he has worked with Sundaram Mutual Fund, Bharti AXA Life Insurance, TVF Capital, HSBC Securities, Credit Suisse Securities & Standard Chartered Bank"
+                    },
+                    {
+                        "name": "Dhruv Muchhal",
+                        "since": "21 Jun 2023",
+                        "education": "Mr. Dhruv has done B.Com, CA and CFA",
+                        "experience": "Prior to joining HDFC MF,he has worked with Motilal Oswal Financial Services Ltd., Goldman Sachs, CRISIL Global Research & Analytics and Deloitte Haskins & Sells"
+                    }
+                ]
+            },
+            "investment_objective": {
+                "text": "The scheme seeks to provide long-term capital appreciation/income by investing predominantly in Large-Cap companies"
+            },
+            "fund_house": {
+                "name": "HDFC Mutual Fund",
+                "total_aum": "₹937,047.59 Cr",
+                "description": "HDFC Mutual Fund started their mutual fund on 30/06/2000 and its managing total assets of ₹2,70,046 Cr. Its ranked at 2 as per total assets at end of 30th Sep 2017",
+                "registrar": "CAMS",
+                "logo_url": "https://assets-netstorage.groww.in/mf-assets/logos/hdfc_groww.png",
+                "page_url": "https://groww.in/mutual-funds/amc/hdfc-mutual-funds"
+            }
+        }
+    },
+    "mid-cap": {
+        "fetched_at": "01 Jun 2026 15:20 UTC",
+        "source_url": "https://groww.in/mutual-funds/hdfc-mid-cap-fund-direct-growth",
+        "data_source": "next_data",
+        "sections": {
+            "overview": {
+                "scheme_name": "HDFC Mid Cap Fund Direct Growth",
+                "fund_name": "HDFC Mid Cap Fund",
+                "category": "Equity",
+                "sub_category": "Mid Cap",
+                "plan_type": "Direct",
+                "scheme_type": "Growth",
+                "isin": "INF179K01XQ0",
+                "scheme_code": "118989",
+                "nav": "₹221.32",
+                "nav_date": "29 May 2026",
+                "aum": "₹94,744.72 Cr",
+                "groww_rating": "5",
+                "launch_date": "01 Jan 2013",
+                "source_url": "https://groww.in/mutual-funds/hdfc-mid-cap-fund-direct-growth"
+            },
+            "expense_ratio": {
+                "value": "0.73%",
+                "note": "Lower expense ratio: 0.73%"
+            },
+            "exit_load": {
+                "description": "Exit load of 1% if redeemed within 1 year",
+                "history": [
+                    {
+                        "description": "Exit load of 1% if redeemed within 1 year",
+                        "effective_from": "01 Jan 2013"
+                    }
+                ]
+            },
+            "minimum_investment": {
+                "lumpsum": "₹100",
+                "sip": "₹100",
+                "additional": "₹100",
+                "sip_multiplier": "₹1"
+            },
+            "benchmark": {
+                "short_name": "NIFTY Midcap 150 TRI",
+                "full_name": "NIFTY Midcap 150 Total Return Index"
+            },
+            "tax": {
+                "stamp_duty": "0.005% (from July 1st, 2020)",
+                "lock_in": "None",
+                "is_elss": false,
+                "ltcg_note": "Long-term capital gains above ₹1.25 lakh taxed at 12.5% (equity funds).",
+                "stcg_note": "Short-term capital gains taxed at 20% (equity funds)."
+            },
+            "fund_management": {
+                "managers": [
+                    {
+                        "name": "Chirag Setalvad",
+                        "since": "31 Dec 2012",
+                        "education": "Mr. Setalvad is a B. Sc and MBA from University of North Carolina",
+                        "experience": "Prior to joining HDFC AMC he has worked with New Vernon Advisory Services Ltd., HDFC AMC and ING Barings N.V"
+                    },
+                    {
+                        "name": "Dhruv Muchhal",
+                        "since": "21 Jun 2023",
+                        "education": "Mr. Dhruv has done B.Com, CA and CFA",
+                        "experience": "Prior to joining HDFC MF,he has worked with Motilal Oswal Financial Services Ltd., Goldman Sachs, CRISIL Global Research & Analytics and Deloitte Haskins & Sells"
+                    }
+                ]
+            },
+            "investment_objective": {
+                "text": "The scheme seeks to provide long-term capital appreciation/income by investing predominantly in Mid-Cap companies"
+            },
+            "fund_house": {
+                "name": "HDFC Mutual Fund",
+                "total_aum": "₹937,047.59 Cr",
+                "description": "HDFC Mutual Fund started their mutual fund on 30/06/2000 and its managing total assets of ₹2,70,046 Cr. Its ranked at 2 as per total assets at end of 30th Sep 2017",
+                "registrar": "CAMS",
+                "logo_url": "https://assets-netstorage.groww.in/mf-assets/logos/hdfc_groww.png",
+                "page_url": "https://groww.in/mutual-funds/amc/hdfc-mutual-funds"
+            }
+        }
+    },
+    "small-cap": {
+        "fetched_at": "01 Jun 2026 15:20 UTC",
+        "source_url": "https://groww.in/mutual-funds/hdfc-small-cap-fund-direct-growth",
+        "data_source": "next_data",
+        "sections": {
+            "overview": {
+                "scheme_name": "HDFC Small Cap Fund Direct Growth",
+                "fund_name": "HDFC Small Cap Fund",
+                "category": "Equity",
+                "sub_category": "Small Cap",
+                "plan_type": "Direct",
+                "scheme_type": "Growth",
+                "isin": "INF179KA1RW5",
+                "scheme_code": "130503",
+                "nav": "₹151.91",
+                "nav_date": "29 May 2026",
+                "aum": "₹38,168.18 Cr",
+                "groww_rating": "4",
+                "launch_date": "01 Jan 2013",
+                "source_url": "https://groww.in/mutual-funds/hdfc-small-cap-fund-direct-growth"
+            },
+            "expense_ratio": {
+                "value": "0.73%",
+                "note": "Lower expense ratio: 0.73%"
+            },
+            "exit_load": {
+                "description": "Exit load of 1% if redeemed within 1 year",
+                "history": [
+                    {
+                        "description": "Exit load of 1% if redeemed within 1 year",
+                        "effective_from": "08 May 2015"
+                    },
+                    {
+                        "description": "Exit load of 2% if redeemed within 12 months, 1% if redeemed after 12 months but within 24 months and 0.50% if redeemed after 24 months but within 36 months",
+                        "effective_from": "18 Dec 2014"
+                    },
+                    {
+                        "description": "Exit load of 2% if redeemed within 12 months and 1% if redeemed after 12 months but before 18 months",
+                        "effective_from": "01 Jul 2014"
+                    },
+                    {
+                        "description": "Exit load of 1% if redeemed within 1 year",
+                        "effective_from": "01 Jan 2013"
+                    }
+                ]
+            },
+            "minimum_investment": {
+                "lumpsum": "₹100",
+                "sip": "₹100",
+                "additional": "₹100",
+                "sip_multiplier": "₹1"
+            },
+            "benchmark": {
+                "short_name": "BSE 250 SmallCap TRI",
+                "full_name": "BSE 250 SmallCap Total Return Index"
+            },
+            "tax": {
+                "stamp_duty": "0.005% (from July 1st, 2020)",
+                "lock_in": "None",
+                "is_elss": false,
+                "ltcg_note": "Long-term capital gains above ₹1.25 lakh taxed at 12.5% (equity funds).",
+                "stcg_note": "Short-term capital gains taxed at 20% (equity funds)."
+            },
+            "fund_management": {
+                "managers": [
+                    {
+                        "name": "Dhruv Muchhal",
+                        "since": "21 Jun 2023",
+                        "education": "Mr. Dhruv has done B.Com, CA and CFA",
+                        "experience": "Prior to joining HDFC MF,he has worked with Motilal Oswal Financial Services Ltd., Goldman Sachs, CRISIL Global Research & Analytics and Deloitte Haskins & Sells"
+                    },
+                    {
+                        "name": "Chirag Setalvad",
+                        "since": "27 Jun 2014",
+                        "education": "Mr. Setalvad is a B. Sc and MBA from University of North Carolina",
+                        "experience": "Prior to joining HDFC AMC he has worked with New Vernon Advisory Services Ltd., HDFC AMC and ING Barings N.V"
+                    }
+                ]
+            },
+            "investment_objective": {
+                "text": "The scheme seeks to provide long-term capital appreciation /income by investing predominantly in Small-Cap companies"
+            },
+            "fund_house": {
+                "name": "HDFC Mutual Fund",
+                "total_aum": "₹937,047.59 Cr",
+                "description": "HDFC Mutual Fund started their mutual fund on 30/06/2000 and its managing total assets of ₹2,70,046 Cr. Its ranked at 2 as per total assets at end of 30th Sep 2017",
+                "registrar": "CAMS",
+                "logo_url": "https://assets-netstorage.groww.in/mf-assets/logos/hdfc_groww.png",
+                "page_url": "https://groww.in/mutual-funds/amc/hdfc-mutual-funds"
+            }
+        }
+    },
+    "_meta": {
+        "parsed_at": "01 Jun 2026 15:20 UTC",
+        "funds_parsed": 5
+    }
+}

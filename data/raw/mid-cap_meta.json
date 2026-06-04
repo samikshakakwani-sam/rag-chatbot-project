@@ -1,0 +1,10 @@
+{
+    "key": "mid-cap",
+    "url": "https://groww.in/mutual-funds/hdfc-mid-cap-fund-direct-growth",
+    "fetched_at": "01 Jun 2026 15:20 UTC",
+    "status_code": 200,
+    "content_type": "text/html; charset=utf-8",
+    "content_length": 405672,
+    "html_path": "data/raw/mid-cap.html",
+    "error": null
+}

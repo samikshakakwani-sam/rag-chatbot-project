@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FundFacts AI — HDFC Fund FAQ Assistant</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: { extend: {
+      colors: {
+        "primary-fixed":"#59fdc5","primary-container":"#00d09c","inverse-surface":"#2c2f42",
+        "surface-variant":"#dfe1fa","surface-container":"#ececff","on-secondary-container":"#f4f3ff",
+        "on-secondary":"#ffffff","tertiary-fixed":"#ffdcc6","inverse-primary":"#2fe0aa",
+        "surface-container-low":"#f3f2ff","surface":"#fbf8ff","on-tertiary":"#ffffff","error":"#ba1a1a",
+        "on-surface":"#171a2c","surface-container-lowest":"#ffffff","outline-variant":"#bacac1",
+        "on-error-container":"#93000a","error-container":"#ffdad6","surface-tint":"#006c4f",
+        "secondary":"#0048d8","primary":"#006c4f","surface-container-high":"#e5e6ff","surface-bright":"#fbf8ff",
+        "secondary-container":"#2761fe","tertiary":"#934b07","surface-dim":"#d7d8f1",
+        "surface-container-highest":"#dfe1fa","outline":"#6b7b72","on-background":"#171a2c",
+        "tertiary-container":"#ffa15b","on-error":"#ffffff","on-surface-variant":"#3c4a43",
+        "on-tertiary-container":"#733800","background":"#fbf8ff","on-primary-container":"#00533c","on-primary":"#ffffff"
+      },
+      borderRadius: { "DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px" },
+      spacing: { "sm":"12px","margin-desktop":"64px","margin-mobile":"16px","md":"24px","lg":"40px","base":"8px","xs":"4px","gutter":"16px" },
+      fontFamily: { sans:["Inter","sans-serif"] },
+      fontSize: {
+        "headline-lg":["32px",{lineHeight:"40px",letterSpacing:"-0.02em",fontWeight:"700"}],
+        "headline-md":["20px",{lineHeight:"28px",fontWeight:"600"}],
+        "body-lg":["16px",{lineHeight:"24px",fontWeight:"400"}],
+        "body-sm":["14px",{lineHeight:"20px",fontWeight:"400"}],
+        "label-bold":["12px",{lineHeight:"16px",fontWeight:"600"}],
+        "mono-label":["13px",{lineHeight:"18px",letterSpacing:"0.02em",fontWeight:"500"}]
+      }
+    }}
+  }
+</script>
+<style>
+  body { font-family:'Inter',sans-serif; min-height:100dvh; }
+  .material-symbols-outlined { font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; }
+  .chat-container::-webkit-scrollbar { width:6px; }
+  .chat-container::-webkit-scrollbar-thumb { background-color:#bacac1; border-radius:10px; }
+  @keyframes slideR { from{opacity:0;transform:translateX(14px)} to{opacity:1;transform:translateX(0)} }
+  @keyframes slideL { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+  .in-r { animation:slideR .28s cubic-bezier(.2,.7,.3,1); }
+  .in-l { animation:slideL .32s cubic-bezier(.2,.7,.3,1); }
+  .dots span{display:inline-block;width:7px;height:7px;border-radius:50%;background:#6b7b72;animation:blink 1.2s infinite both;margin:0 1px}
+  .dots span:nth-child(2){animation-delay:.2s}.dots span:nth-child(3){animation-delay:.4s}
+  @keyframes blink{0%,80%,100%{opacity:.25}40%{opacity:1}}
+
+  /* ---- Dark mode: remap the fixed Stitch tokens via overrides ---- */
+  html.dark { color-scheme:dark; }
+  html.dark .bg-background, html.dark .bg-surface, html.dark .bg-surface-bright { background-color:#0e1117 !important; }
+  html.dark .bg-surface-container-lowest { background-color:#151a21 !important; }
+  html.dark .bg-surface-container-low { background-color:#1a212b !important; }
+  html.dark .bg-surface-container { background-color:#222a36 !important; }
+  html.dark .text-on-surface { color:#e8ebf0 !important; }
+  html.dark .text-on-surface-variant { color:#9aa4b2 !important; }
+  html.dark .border-outline-variant { border-color:#2a3340 !important; }
+  html.dark .text-primary { color:#2fe0aa !important; }
+  html.dark .text-secondary { color:#9db4ff !important; }
+</style>
+</head>
+<body class="bg-background text-on-surface h-screen flex flex-col overflow-hidden">
+
+<!-- TopAppBar -->
+<header class="bg-surface border-b border-outline-variant flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop h-16 sticky top-0 z-50">
+  <div class="flex items-center gap-xs">
+    <span class="material-symbols-outlined text-primary">account_balance</span>
+    <span class="text-headline-md font-bold text-primary">FundFacts&nbsp;AI</span>
+  </div>
+  <div class="flex items-center gap-md">
+    <a href="/compliance" class="hidden sm:flex items-center gap-xs text-label-bold text-on-surface-variant hover:text-primary transition-colors">
+      <span class="material-symbols-outlined text-[18px]">shield</span> Sources &amp; Compliance
+    </a>
+    <span class="hidden md:block text-label-bold text-on-surface-variant uppercase tracking-widest">FACTS-ONLY</span>
+    <button id="themeBtn" title="Toggle theme" class="material-symbols-outlined p-base rounded-full hover:bg-surface-container transition-colors">dark_mode</button>
+  </div>
+</header>
+
+<!-- Main chat canvas -->
+<main class="flex-grow flex flex-col overflow-hidden max-w-5xl mx-auto w-full">
+  <div id="chat" class="chat-container flex-grow overflow-y-auto px-margin-mobile md:px-margin-desktop py-lg space-y-lg">
+
+    <!-- Welcome block -->
+    <div id="welcome" class="in-l">
+      <h1 class="text-headline-lg font-bold mb-xs">Get factual answers on HDFC mutual funds.</h1>
+      <p class="text-body-lg text-on-surface-variant max-w-2xl">
+        Objective, source-cited information on 5 HDFC funds — NAV, expense ratio, exit load, minimum SIP,
+        benchmark, tax, and fund managers. <span class="font-semibold text-on-surface">No opinions, no advice — just the data.</span>
+      </p>
+      <div class="mt-md flex items-center gap-xs text-error-container">
+        <div class="flex items-center gap-xs px-sm py-xs rounded-lg bg-error-container text-on-error-container">
+          <span class="material-symbols-outlined text-[18px]">warning</span>
+          <span class="text-label-bold">Facts-only. No investment advice.</span>
+        </div>
+      </div>
+      <div class="mt-md">
+        <div class="flex items-center justify-between mb-sm">
+          <h2 class="text-headline-md font-semibold">Common questions</h2>
+        </div>
+        <div id="pills" class="grid grid-cols-1 md:grid-cols-3 gap-sm"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Input area -->
+  <div class="p-margin-mobile md:p-md bg-surface">
+    <div id="warn" class="hidden max-w-4xl mx-auto mb-sm flex items-center gap-xs px-sm py-xs rounded-lg bg-error-container text-on-error-container text-body-sm"></div>
+    <div class="relative max-w-4xl mx-auto group">
+      <div class="relative bg-surface border border-outline-variant focus-within:border-primary-container rounded-xl shadow-lg flex items-center p-xs transition-all">
+        <span class="material-symbols-outlined text-on-surface-variant p-sm select-none" title="Type your question">help</span>
+        <input id="input" class="flex-grow bg-transparent border-none focus:ring-0 text-body-lg py-sm px-xs placeholder:text-outline text-on-surface" placeholder="Ask about a fund's NAV, expense ratio, exit load…" type="text" autocomplete="off"/>
+        <button id="send" class="bg-primary text-on-primary rounded-lg p-sm ml-xs flex items-center justify-center hover:bg-primary-container hover:text-on-primary-container transition-colors shadow-sm disabled:opacity-50">
+          <span class="material-symbols-outlined">send</span>
+        </button>
+      </div>
+      <p class="text-center text-[10px] text-on-surface-variant mt-sm uppercase tracking-widest font-bold opacity-60">Hybrid RAG · BGE-small + ChromaDB · Groq</p>
+    </div>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant w-full py-sm px-margin-mobile text-center z-50">
+  <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-xs">
+    <p id="footer" class="text-label-bold text-on-surface-variant">Last updated from sources: —</p>
+    <div class="flex gap-md">
+      <span class="text-label-bold text-on-surface-variant">Facts-only. No investment advice.</span>
+      <a class="text-label-bold text-on-surface-variant opacity-80 hover:opacity-100 hover:text-primary transition-all" href="/compliance">Regulatory Disclosures</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const API_BASE = location.protocol === "file:" ? "http://127.0.0.1:8077" : "";
+  const chat = document.getElementById("chat");
+  const input = document.getElementById("input");
+  const sendBtn = document.getElementById("send");
+  const pillsEl = document.getElementById("pills");
+  const footerEl = document.getElementById("footer");
+  const warnEl = document.getElementById("warn");
+  const themeBtn = document.getElementById("themeBtn");
+
+  /* Theme (persisted) */
+  const saved = localStorage.getItem("ff-theme") || "light";
+  setTheme(saved);
+  themeBtn.addEventListener("click", () =>
+    setTheme(document.documentElement.classList.contains("dark") ? "light" : "dark"));
+  function setTheme(t){
+    document.documentElement.classList.toggle("dark", t === "dark");
+    document.documentElement.classList.toggle("light", t !== "dark");
+    themeBtn.textContent = t === "dark" ? "light_mode" : "dark_mode";
+    localStorage.setItem("ff-theme", t);
+  }
+
+  /* Client-side PII guard (mirrors backend) */
+  const PII = [
+    { kind:"PAN", re:/\b[A-Z]{5}[0-9]{4}[A-Z]\b/i },
+    { kind:"Aadhaar", re:/\b\d{4}[\s-]?\d{4}[\s-]?\d{4}\b/ },
+    { kind:"email", re:/\b[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}\b/ },
+    { kind:"phone", re:/(?:(?:\+91|91|0)[\s-]?)?\b[6-9]\d{4}[\s-]?\d{5}\b/ },
+  ];
+  const detectPII = t => { const h = PII.filter(p=>p.re.test(t)).map(p=>p.kind); return h.length?h:null; };
+
+  const now = () => new Date().toLocaleTimeString([], {hour:"2-digit", minute:"2-digit"});
+  const esc = s => { const d=document.createElement("div"); d.textContent=s; return d.innerHTML; };
+  const prettyUrl = u => { try{const x=new URL(u);return x.hostname.replace(/^www\./,"")+x.pathname.replace(/\/$/,"");}catch{return u;} };
+  const scrollDown = () => chat.scrollTop = chat.scrollHeight;
+
+  function addUser(text){
+    const m = document.createElement("div");
+    m.className = "flex flex-col items-end in-r";
+    m.innerHTML = `<div class="bg-secondary-container text-on-secondary-container rounded-xl rounded-tr-none px-md py-sm max-w-[85%] md:max-w-[70%] shadow-sm">
+        <p class="text-body-lg">${esc(text)}</p></div>
+      <span class="text-label-bold text-on-surface-variant mt-xs mr-xs">User • ${now()}</span>`;
+    chat.appendChild(m); scrollDown();
+  }
+
+  function addTyping(){
+    const m = document.createElement("div");
+    m.className = "flex flex-col items-start in-l"; m.id = "typing";
+    m.innerHTML = `<div class="bg-surface-container-low border border-outline-variant rounded-xl rounded-tl-none px-md py-sm">
+        <span class="dots"><span></span><span></span><span></span></span></div>`;
+    chat.appendChild(m); scrollDown(); return m;
+  }
+
+  function addBot(data){
+    const m = document.createElement("div");
+    m.className = "flex flex-col items-start in-l";
+
+    // Badge varies by response type
+    let icon = "verified", label = "Verified Fact", color = "text-primary";
+    if (data.refused && data.refusal_reason === "pii") { icon="security"; label="Privacy Notice"; color="text-error"; }
+    else if (data.refused) { icon="policy"; label="Compliance Notice"; color="text-tertiary"; }
+
+    let html = `<div class="bg-surface-container-low border border-outline-variant rounded-xl rounded-tl-none px-md py-sm max-w-[90%] md:max-w-[80%]">
+      <div class="flex items-center gap-xs mb-xs ${color}">
+        <span class="material-symbols-outlined text-[18px]">${icon}</span>
+        <span class="text-label-bold uppercase tracking-wider">${label}</span>
+      </div>
+      <p class="text-body-lg text-on-surface leading-relaxed">${esc(data.reply||"(no response)")}</p>`;
+
+    if (data.citation){
+      html += `<div class="mt-md pt-sm border-t border-outline-variant flex flex-col gap-xs">
+        <a class="flex items-center gap-xs text-secondary hover:underline" href="${esc(data.citation)}" target="_blank" rel="noopener noreferrer">
+          <span class="material-symbols-outlined text-[16px]">link</span>
+          <span class="text-label-bold">Source: ${esc(prettyUrl(data.citation))}</span>
+        </a>`;
+      if (data.last_updated)
+        html += `<span class="text-[10px] font-medium uppercase opacity-70 text-on-surface-variant">Last updated from sources: ${esc(data.last_updated)}</span>`;
+      html += `</div>`;
+    }
+    html += `</div>`;
+    m.innerHTML = html;
+    chat.appendChild(m); scrollDown();
+  }
+
+  async function send(text){
+    text = (text || input.value).trim();
+    if (!text) return;
+    warnEl.classList.add("hidden");
+    const pii = detectPII(text);
+    if (pii){
+      warnEl.innerHTML = `<span class="material-symbols-outlined text-[18px]">security</span> Please don't share personal details (${pii.join(", ")}). Your message was not sent.`;
+      warnEl.classList.remove("hidden");
+      return;
+    }
+    document.getElementById("welcome")?.remove();
+    addUser(text); input.value=""; sendBtn.disabled=true;
+    const typing = addTyping();
+    try{
+      const res = await fetch(API_BASE+"/api/chat",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({message:text})});
+      typing.remove();
+      if(!res.ok) throw new Error("HTTP "+res.status);
+      const data = await res.json();
+      addBot(data);
+      if(data.last_updated) setFooter(data.last_updated);
+    }catch(e){
+      typing.remove();
+      addBot({reply:"Sorry, I couldn't reach the assistant. Make sure the server is running.", refused:true, refusal_reason:"error"});
+    }finally{ sendBtn.disabled=false; input.focus(); }
+  }
+  const setFooter = d => footerEl.textContent = "Last updated from sources: " + d;
+
+  input.addEventListener("keydown", e => { if(e.key==="Enter"){ e.preventDefault(); send(); } });
+  sendBtn.addEventListener("click", () => send());
+
+  async function init(){
+    try{
+      const res = await fetch(API_BASE+"/api/funds");
+      const data = await res.json();
+      (data.example_questions||[]).forEach(q=>{
+        const c = document.createElement("button");
+        c.className = "text-left p-md bg-surface-container-lowest border border-outline-variant rounded-xl hover:border-primary-container hover:bg-surface-container-low transition-all group";
+        c.innerHTML = `<p class="text-body-sm text-on-surface mb-sm">${esc(q)}</p>
+          <span class="flex items-center gap-xs text-label-bold text-primary opacity-80 group-hover:opacity-100">Tap to ask <span class="material-symbols-outlined text-[16px]">arrow_forward</span></span>`;
+        c.addEventListener("click", () => send(q));
+        pillsEl.appendChild(c);
+      });
+      if(data.last_updated) setFooter(data.last_updated);
+    }catch{
+      warnEl.textContent = "Could not load funds — is the backend running?";
+      warnEl.classList.remove("hidden");
+    }
+  }
+  init(); input.focus();
+</script>
+</body>
+</html>

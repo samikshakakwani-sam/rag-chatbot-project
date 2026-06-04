@@ -1,0 +1,27 @@
+# Secrets — NEVER bake into the image
+.env
+.env.*
+
+# Local virtualenv / caches
+.venv/
+venv/
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Regenerated inside the image
+data/chroma/
+# Large raw HTML — not needed at runtime
+data/raw/
+# Gitignored local corpus copy (may be absent / restricted perms)
+data/mutual_funds_data.json
+data/parsed_sections.json
+
+# Dev-only
+tests/
+logs/
+.git/
+.gitignore
+.claude/
+Docs/
+*.md

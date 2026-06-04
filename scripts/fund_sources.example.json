@@ -1,0 +1,23 @@
+{
+    "_comment": "Copy this file to fund_sources.json and set source_path to the local HTML/markdown file for each fund.",
+    "mid-cap": {
+        "source_path": "/absolute/path/to/hdfc-mid-cap-page.html",
+        "source_url": "https://groww.in/mutual-funds/hdfc-mid-cap-fund-direct-growth"
+    },
+    "large-cap": {
+        "source_path": "/absolute/path/to/hdfc-large-cap-page.html",
+        "source_url": "https://groww.in/mutual-funds/hdfc-large-cap-fund-direct-growth"
+    },
+    "small-cap": {
+        "source_path": "/absolute/path/to/hdfc-small-cap-page.html",
+        "source_url": "https://groww.in/mutual-funds/hdfc-small-cap-fund-direct-growth"
+    },
+    "gold-etf": {
+        "source_path": "/absolute/path/to/hdfc-gold-etf-page.html",
+        "source_url": "https://groww.in/mutual-funds/hdfc-gold-etf-fund-of-fund-direct-plan-growth"
+    },
+    "defence": {
+        "source_path": "/absolute/path/to/hdfc-defence-page.html",
+        "source_url": "https://groww.in/mutual-funds/hdfc-defence-fund-direct-growth"
+    }
+}

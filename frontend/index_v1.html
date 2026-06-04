@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HDFC Fund FAQ Assistant</title>
+  <style>
+    /* ---------- Design tokens ---------- */
+    :root {
+      --brand: #00b386;          /* Groww signal green */
+      --brand-dark: #009972;
+      --brand-tint: #e6f7f1;
+      --bg: #f4f6f8;
+      --surface: #ffffff;
+      --surface-2: #f0f2f5;
+      --text: #1a1f2c;
+      --text-soft: #5b6472;
+      --border: #e3e7ec;
+      --user-bubble: #00b386;
+      --user-text: #ffffff;
+      --bot-bubble: #ffffff;
+      --shadow: 0 1px 3px rgba(16,24,40,.08), 0 1px 2px rgba(16,24,40,.04);
+      --radius: 16px;
+      --warn-bg: #fff4e5;
+      --warn-text: #8a5a00;
+    }
+    [data-theme="dark"] {
+      --brand: #00d09c;
+      --brand-dark: #00b386;
+      --brand-tint: #10241e;
+      --bg: #0e1117;
+      --surface: #171b22;
+      --surface-2: #1f242d;
+      --text: #e8ebf0;
+      --text-soft: #9aa4b2;
+      --border: #2a2f3a;
+      --user-bubble: #00b386;
+      --user-text: #04130d;
+      --bot-bubble: #1f242d;
+      --shadow: 0 1px 3px rgba(0,0,0,.4);
+      --warn-bg: #2e2410;
+      --warn-text: #f0c674;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      transition: background .3s ease, color .3s ease;
+      display: flex;
+      justify-content: center;
+    }
+
+    .app {
+      width: 100%;
+      max-width: 760px;
+      height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      background: var(--surface);
+      transition: background .3s ease;
+    }
+
+    /* ---------- Header ---------- */
+    header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .logo {
+      width: 38px; height: 38px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--brand), var(--brand-dark));
+      display: grid; place-items: center;
+      color: #fff; font-weight: 800; font-size: 18px;
+      flex-shrink: 0;
+    }
+    .title { display: flex; flex-direction: column; line-height: 1.2; }
+    .title b { font-size: 16px; }
+    .title span { font-size: 12px; color: var(--text-soft); }
+    .spacer { flex: 1; }
+    .theme-btn {
+      border: 1px solid var(--border); background: var(--surface-2);
+      color: var(--text); width: 38px; height: 38px; border-radius: 10px;
+      cursor: pointer; font-size: 16px; transition: background .2s, transform .2s;
+    }
+    .theme-btn:hover { transform: translateY(-1px); }
+
+    /* ---------- Disclaimer bar (persistent) ---------- */
+    .disclaimer {
+      background: var(--brand-tint);
+      color: var(--brand-dark);
+      font-size: 12.5px; font-weight: 600;
+      padding: 7px 18px;
+      display: flex; align-items: center; gap: 6px;
+      border-bottom: 1px solid var(--border);
+    }
+    [data-theme="dark"] .disclaimer { color: var(--brand); }
+
+    /* ---------- Chat area ---------- */
+    .chat {
+      flex: 1; overflow-y: auto; padding: 18px;
+      display: flex; flex-direction: column; gap: 14px;
+      scroll-behavior: smooth;
+    }
+    .welcome {
+      background: var(--surface-2); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 16px 18px;
+    }
+    .welcome h2 { margin: 0 0 6px; font-size: 16px; }
+    .welcome p { margin: 0; font-size: 13.5px; color: var(--text-soft); line-height: 1.5; }
+
+    .pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .pill {
+      border: 1px solid var(--brand); color: var(--brand-dark);
+      background: transparent; border-radius: 999px;
+      padding: 7px 13px; font-size: 12.5px; cursor: pointer;
+      transition: background .2s, color .2s, transform .15s;
+    }
+    [data-theme="dark"] .pill { color: var(--brand); }
+    .pill:hover { background: var(--brand); color: #fff; transform: translateY(-1px); }
+
+    /* ---------- Message bubbles ---------- */
+    .msg { display: flex; max-width: 86%; }
+    .msg.user { align-self: flex-end; justify-content: flex-end; }
+    .msg.bot  { align-self: flex-start; }
+    .bubble {
+      padding: 11px 14px; border-radius: var(--radius);
+      font-size: 14px; line-height: 1.5; box-shadow: var(--shadow);
+      word-wrap: break-word; white-space: pre-wrap;
+    }
+    .user .bubble {
+      background: var(--user-bubble); color: var(--user-text);
+      border-bottom-right-radius: 5px;
+    }
+    .bot .bubble {
+      background: var(--bot-bubble); color: var(--text);
+      border: 1px solid var(--border); border-bottom-left-radius: 5px;
+    }
+    .bot .bubble.refused { border-color: #f0a; border-left: 3px solid #e6536b; }
+
+    .citation { margin-top: 8px; font-size: 12px; }
+    .citation a { color: var(--brand-dark); text-decoration: none; font-weight: 600; }
+    [data-theme="dark"] .citation a { color: var(--brand); }
+    .citation a:hover { text-decoration: underline; }
+    .citation .label { color: var(--text-soft); margin-right: 4px; }
+
+    /* slide-in animation */
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .msg { animation: slideIn .28s cubic-bezier(.2,.7,.3,1); }
+
+    /* typing indicator */
+    .typing { display: inline-flex; gap: 4px; align-items: center; }
+    .typing span {
+      width: 7px; height: 7px; border-radius: 50%; background: var(--text-soft);
+      animation: blink 1.2s infinite both;
+    }
+    .typing span:nth-child(2) { animation-delay: .2s; }
+    .typing span:nth-child(3) { animation-delay: .4s; }
+    @keyframes blink { 0%,80%,100% { opacity: .25; } 40% { opacity: 1; } }
+
+    /* ---------- Composer ---------- */
+    .composer {
+      border-top: 1px solid var(--border); padding: 12px 14px;
+      background: var(--surface);
+    }
+    .input-warn {
+      display: none; background: var(--warn-bg); color: var(--warn-text);
+      font-size: 12.5px; padding: 8px 12px; border-radius: 10px; margin-bottom: 8px;
+    }
+    .input-warn.show { display: block; animation: slideIn .2s ease; }
+    .input-row { display: flex; gap: 8px; align-items: flex-end; }
+    textarea {
+      flex: 1; resize: none; border: 1px solid var(--border);
+      border-radius: 12px; padding: 11px 13px; font-size: 14px;
+      font-family: inherit; background: var(--surface-2); color: var(--text);
+      max-height: 120px; line-height: 1.4; transition: border .2s;
+    }
+    textarea:focus { outline: none; border-color: var(--brand); }
+    .send {
+      background: var(--brand); color: #fff; border: none;
+      width: 44px; height: 44px; border-radius: 12px; cursor: pointer;
+      font-size: 18px; flex-shrink: 0; transition: background .2s, transform .15s;
+    }
+    .send:hover:not(:disabled) { background: var(--brand-dark); transform: translateY(-1px); }
+    .send:disabled { opacity: .5; cursor: not-allowed; }
+
+    /* ---------- Footer ---------- */
+    .footer {
+      text-align: center; font-size: 11.5px; color: var(--text-soft);
+      padding: 8px; border-top: 1px solid var(--border); background: var(--surface);
+    }
+
+    @media (max-width: 600px) {
+      .msg { max-width: 92%; }
+      header { padding: 12px 14px; }
+      .chat { padding: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div class="logo">₹</div>
+      <div class="title">
+        <b>HDFC Fund FAQ Assistant</b>
+        <span>Factual answers about 5 HDFC mutual funds</span>
+      </div>
+      <div class="spacer"></div>
+      <button class="theme-btn" id="themeBtn" title="Toggle theme" aria-label="Toggle light/dark theme">🌙</button>
+    </header>
+
+    <div class="disclaimer">🛡️ Facts-only. No investment advice.</div>
+
+    <div class="chat" id="chat">
+      <div class="welcome">
+        <h2>👋 Welcome!</h2>
+        <p>I answer <b>factual</b> questions about HDFC Mid-Cap, Large-Cap, Small-Cap, Gold ETF, and Defence funds —
+           NAV, expense ratio, exit load, minimum SIP, benchmark, tax, fund managers, and more.
+           I don't give investment advice, recommendations, or return predictions.</p>
+        <div class="pills" id="pills"></div>
+      </div>
+    </div>
+
+    <div class="composer">
+      <div class="input-warn" id="warn"></div>
+      <div class="input-row">
+        <textarea id="input" rows="1" placeholder="Ask about a fund's NAV, expense ratio, exit load…"></textarea>
+        <button class="send" id="send" aria-label="Send">➤</button>
+      </div>
+    </div>
+
+    <div class="footer" id="footer">Last updated from sources: —</div>
+  </div>
+
+  <script>
+    // API base: same-origin when served by the backend; localhost fallback for file://
+    const API_BASE = location.protocol === "file:" ? "http://127.0.0.1:8077" : "";
+
+    const chat = document.getElementById("chat");
+    const input = document.getElementById("input");
+    const sendBtn = document.getElementById("send");
+    const pillsEl = document.getElementById("pills");
+    const footerEl = document.getElementById("footer");
+    const warnEl = document.getElementById("warn");
+    const themeBtn = document.getElementById("themeBtn");
+
+    /* ---------- Theme toggle (persisted) ---------- */
+    const savedTheme = localStorage.getItem("theme") || "light";
+    document.documentElement.setAttribute("data-theme", savedTheme);
+    themeBtn.textContent = savedTheme === "dark" ? "☀️" : "🌙";
+    themeBtn.addEventListener("click", () => {
+      const next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", next);
+      localStorage.setItem("theme", next);
+      themeBtn.textContent = next === "dark" ? "☀️" : "🌙";
+    });
+
+    /* ---------- Client-side PII guard (mirrors backend; blocks before sending) ---------- */
+    const PII = [
+      { kind: "PAN",     re: /\b[A-Z]{5}[0-9]{4}[A-Z]\b/i },
+      { kind: "Aadhaar", re: /\b\d{4}[\s-]?\d{4}[\s-]?\d{4}\b/ },
+      { kind: "email",   re: /\b[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}\b/ },
+      { kind: "phone",   re: /(?:(?:\+91|91|0)[\s-]?)?\b[6-9]\d{4}[\s-]?\d{5}\b/ },
+    ];
+    function detectPII(text) {
+      const hits = PII.filter(p => p.re.test(text)).map(p => p.kind);
+      return hits.length ? hits : null;
+    }
+
+    /* ---------- Rendering ---------- */
+    function addUser(text) {
+      const m = document.createElement("div");
+      m.className = "msg user";
+      m.innerHTML = `<div class="bubble"></div>`;
+      m.querySelector(".bubble").textContent = text;
+      chat.appendChild(m);
+      scrollDown();
+    }
+
+    function addTyping() {
+      const m = document.createElement("div");
+      m.className = "msg bot";
+      m.id = "typing";
+      m.innerHTML = `<div class="bubble"><span class="typing"><span></span><span></span><span></span></span></div>`;
+      chat.appendChild(m);
+      scrollDown();
+      return m;
+    }
+
+    function addBot(data) {
+      const m = document.createElement("div");
+      m.className = "msg bot";
+      const refused = data.refused ? " refused" : "";
+      const bubble = document.createElement("div");
+      bubble.className = "bubble" + refused;
+      bubble.textContent = data.reply || "(no response)";
+      m.appendChild(bubble);
+
+      if (data.citation) {
+        const c = document.createElement("div");
+        c.className = "citation";
+        c.innerHTML = `<span class="label">Source:</span>`;
+        const a = document.createElement("a");
+        a.href = data.citation; a.target = "_blank"; a.rel = "noopener noreferrer";
+        a.textContent = prettyUrl(data.citation);
+        c.appendChild(a);
+        m.appendChild(c);
+      }
+      chat.appendChild(m);
+      scrollDown();
+    }
+
+    function prettyUrl(u) {
+      try { const url = new URL(u); return url.hostname.replace(/^www\./, "") + url.pathname.replace(/\/$/, ""); }
+      catch { return u; }
+    }
+    function scrollDown() { chat.scrollTop = chat.scrollHeight; }
+
+    function showWarn(msg) { warnEl.textContent = msg; warnEl.classList.add("show"); }
+    function hideWarn() { warnEl.classList.remove("show"); }
+
+    /* ---------- Send flow ---------- */
+    async function send(text) {
+      text = (text || input.value).trim();
+      if (!text) return;
+      hideWarn();
+
+      const pii = detectPII(text);
+      if (pii) {
+        showWarn(`⚠️ Please don't share personal details (${pii.join(", ")}). Your message was not sent.`);
+        return;
+      }
+
+      addUser(text);
+      input.value = "";
+      autosize();
+      sendBtn.disabled = true;
+      const typing = addTyping();
+
+      try {
+        const res = await fetch(API_BASE + "/api/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: text }),
+        });
+        typing.remove();
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        const data = await res.json();
+        addBot(data);
+        if (data.last_updated) setFooter(data.last_updated);
+      } catch (e) {
+        typing.remove();
+        addBot({ reply: "Sorry, I couldn't reach the assistant. Please ensure the server is running.", refused: true });
+      } finally {
+        sendBtn.disabled = false;
+        input.focus();
+      }
+    }
+
+    function setFooter(date) { footerEl.textContent = "Last updated from sources: " + date; }
+
+    /* ---------- Composer behaviour ---------- */
+    function autosize() {
+      input.style.height = "auto";
+      input.style.height = Math.min(input.scrollHeight, 120) + "px";
+    }
+    input.addEventListener("input", () => { autosize(); hideWarn(); });
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); send(); }
+    });
+    sendBtn.addEventListener("click", () => send());
+
+    /* ---------- Bootstrap: load funds + quick questions + footer ---------- */
+    async function init() {
+      try {
+        const res = await fetch(API_BASE + "/api/funds");
+        const data = await res.json();
+        (data.example_questions || []).forEach(q => {
+          const b = document.createElement("button");
+          b.className = "pill";
+          b.textContent = q;
+          b.addEventListener("click", () => send(q));
+          pillsEl.appendChild(b);
+        });
+        if (data.last_updated) setFooter(data.last_updated);
+      } catch {
+        showWarn("Could not load fund list — is the backend running on " + (API_BASE || location.origin) + "?");
+      }
+    }
+    init();
+    input.focus();
+  </script>
+</body>
+</html>

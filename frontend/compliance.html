@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sources &amp; Compliance — FundFacts AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: { extend: {
+      colors: {
+        "primary-fixed":"#59fdc5","primary-container":"#00d09c","surface-variant":"#dfe1fa",
+        "surface-container":"#ececff","on-secondary-container":"#f4f3ff","on-secondary":"#ffffff",
+        "surface-container-low":"#f3f2ff","surface":"#fbf8ff","error":"#ba1a1a","on-surface":"#171a2c",
+        "surface-container-lowest":"#ffffff","outline-variant":"#bacac1","error-container":"#ffdad6",
+        "on-error-container":"#93000a","secondary":"#0048d8","primary":"#006c4f","surface-container-high":"#e5e6ff",
+        "surface-bright":"#fbf8ff","secondary-container":"#2761fe","tertiary":"#934b07","outline":"#6b7b72",
+        "on-background":"#171a2c","tertiary-container":"#ffa15b","on-surface-variant":"#3c4a43",
+        "background":"#fbf8ff","on-primary-container":"#00533c","on-primary":"#ffffff"
+      },
+      borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},
+      spacing:{"sm":"12px","margin-desktop":"64px","margin-mobile":"16px","md":"24px","lg":"40px","base":"8px","xs":"4px","gutter":"16px"},
+      fontFamily:{sans:["Inter","sans-serif"]},
+      fontSize:{
+        "headline-lg":["32px",{lineHeight:"40px",letterSpacing:"-0.02em",fontWeight:"700"}],
+        "headline-md":["20px",{lineHeight:"28px",fontWeight:"600"}],
+        "body-lg":["16px",{lineHeight:"24px",fontWeight:"400"}],
+        "body-sm":["14px",{lineHeight:"20px",fontWeight:"400"}],
+        "label-bold":["12px",{lineHeight:"16px",fontWeight:"600"}],
+        "mono-label":["13px",{lineHeight:"18px",letterSpacing:"0.02em",fontWeight:"500"}]
+      }
+    }}
+  }
+</script>
+<style>
+  body { font-family:'Inter',sans-serif; -webkit-font-smoothing:antialiased; min-height:100dvh; }
+  .material-symbols-outlined { font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; }
+  .doc-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1rem; }
+  html.dark .bg-background,html.dark .bg-surface,html.dark .bg-surface-bright{background-color:#0e1117!important}
+  html.dark .bg-surface-container-lowest{background-color:#151a21!important}
+  html.dark .bg-surface-container-low{background-color:#1a212b!important}
+  html.dark .bg-surface-container{background-color:#222a36!important}
+  html.dark .text-on-surface{color:#e8ebf0!important}
+  html.dark .text-on-surface-variant{color:#9aa4b2!important}
+  html.dark .border-outline-variant{border-color:#2a3340!important}
+  html.dark .text-primary{color:#2fe0aa!important}
+</style>
+</head>
+<body class="bg-background text-on-surface">
+
+<header class="bg-surface border-b border-outline-variant fixed top-0 left-0 right-0 z-50 flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop h-16">
+  <a href="/" class="flex items-center gap-base hover:opacity-80 transition-opacity">
+    <span class="material-symbols-outlined text-primary">account_balance</span>
+    <span class="text-headline-md font-bold text-primary">FundFacts&nbsp;AI</span>
+  </a>
+  <div class="flex items-center gap-md">
+    <a href="/" class="flex items-center gap-xs text-label-bold text-on-surface-variant hover:text-primary transition-colors">
+      <span class="material-symbols-outlined text-[18px]">chat</span> Back to chat
+    </a>
+    <span class="text-label-bold px-md py-xs bg-primary-container text-on-primary-container rounded-full tracking-wider">FACTS-ONLY</span>
+  </div>
+</header>
+
+<main class="pt-24 pb-lg px-margin-mobile md:px-margin-desktop max-w-[1200px] mx-auto">
+
+  <!-- Hero -->
+  <section class="mb-lg">
+    <h1 class="text-headline-lg font-bold mb-sm">Sources &amp; Compliance</h1>
+    <p class="text-body-lg text-on-surface-variant max-w-2xl">
+      FundFacts AI answers only from a fixed, curated corpus of official HDFC fund data sourced from Groww.
+      Every reply is grounded in that data and carries a source link — no third-party blogs, no opinions, no predictions.
+    </p>
+  </section>
+
+  <!-- Commitment + Privacy -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-md mb-lg">
+    <div class="bg-surface-container-low border border-outline-variant p-md rounded-xl">
+      <div class="flex items-start gap-sm mb-sm">
+        <span class="material-symbols-outlined text-primary">verified</span>
+        <h2 class="text-headline-md font-semibold">Our commitment to facts</h2>
+      </div>
+      <p class="text-body-sm text-on-surface-variant leading-relaxed">
+        Responses are generated only from the <span class="font-semibold">Curated Corpus</span> — structured snapshots of
+        official HDFC fund pages. A hybrid retrieval engine (keyword + BGE-small semantic search over ChromaDB) selects the
+        relevant facts, and the model is constrained to answer from that context, in ≤3 sentences, with exactly one citation.
+        Advisory, comparison, and return-prediction questions are refused by design.
+      </p>
+    </div>
+    <div class="bg-secondary-container text-on-secondary-container p-md rounded-xl shadow-lg">
+      <div class="flex items-start gap-sm mb-sm">
+        <span class="material-symbols-outlined text-primary-fixed">security</span>
+        <h2 class="text-headline-md font-semibold">Zero-data privacy notice</h2>
+      </div>
+      <p class="text-body-sm leading-relaxed opacity-90">
+        Your privacy is non-negotiable. <span class="font-bold">FundFacts AI never asks for or stores PAN, Aadhaar,
+        bank account numbers, OTPs, email, or phone numbers.</span> Inputs are screened for such details and rejected
+        before any processing, and raw input containing PII is never logged. Conversations are stateless and anonymous by design.
+      </p>
+    </div>
+  </div>
+
+  <div class="space-y-lg">
+    <div class="border-b border-outline-variant pb-xs">
+      <h3 class="text-headline-md font-semibold uppercase tracking-widest text-on-surface-variant opacity-70">Curated Corpus: HDFC Mutual Fund</h3>
+    </div>
+
+    <!-- Indexed fund pages (live from /api/funds) -->
+    <section>
+      <div class="flex items-center gap-xs mb-md">
+        <span class="material-symbols-outlined text-primary">description</span>
+        <h4 class="text-headline-md font-semibold">Indexed fund pages</h4>
+        <span id="fundCount" class="text-label-bold text-on-surface-variant"></span>
+      </div>
+      <div id="funds" class="doc-grid">
+        <div class="text-body-sm text-on-surface-variant p-sm">Loading fund corpus…</div>
+      </div>
+    </section>
+
+    <!-- Extracted sections -->
+    <section>
+      <div class="flex items-center gap-xs mb-md">
+        <span class="material-symbols-outlined text-primary">dataset</span>
+        <h4 class="text-headline-md font-semibold">Extracted data sections</h4>
+      </div>
+      <p class="text-body-sm text-on-surface-variant mb-md max-w-3xl">Each fund page is parsed into nine canonical sections (45 chunks total), embedded and stored for retrieval.</p>
+      <div id="sections" class="doc-grid"></div>
+    </section>
+
+    <!-- Official source URLs -->
+    <section class="bg-surface-container rounded-xl p-md">
+      <div class="flex items-center gap-xs mb-md">
+        <span class="material-symbols-outlined text-primary">language</span>
+        <h4 class="text-headline-md font-semibold">Official source URLs</h4>
+      </div>
+      <p class="text-body-sm text-on-surface-variant mb-md">Fund data is sourced from these official Groww fund pages; investor-education refusals link to AMFI and SEBI.</p>
+      <div id="urls" class="grid grid-cols-1 md:grid-cols-2 gap-xs"></div>
+    </section>
+  </div>
+</main>
+
+<footer class="bg-surface-container-lowest border-t border-outline-variant w-full py-sm px-margin-mobile text-center">
+  <p id="footer" class="text-label-bold text-on-surface-variant mb-xs">Facts-only. No investment advice.</p>
+  <div class="flex justify-center gap-md">
+    <a class="text-label-bold text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100" href="/">Back to chat</a>
+    <a class="text-label-bold text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100" href="https://www.amfiindia.com/investor-corner" target="_blank" rel="noopener">AMFI Investor Corner</a>
+    <a class="text-label-bold text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100" href="https://investor.sebi.gov.in/" target="_blank" rel="noopener">SEBI Investor</a>
+  </div>
+</footer>
+
+<script>
+  const API_BASE = location.protocol === "file:" ? "http://127.0.0.1:8077" : "";
+  if ((localStorage.getItem("ff-theme")||"light") === "dark") document.documentElement.classList.add("dark");
+
+  const SECTIONS = [
+    ["overview","NAV, AUM, ISIN, rating, launch"],
+    ["expense_ratio","Total expense ratio (TER)"],
+    ["exit_load","Redemption charges + history"],
+    ["minimum_investment","SIP, lumpsum, additional"],
+    ["benchmark","Benchmark index tracked"],
+    ["tax","Stamp duty, lock-in, LTCG/STCG"],
+    ["fund_management","Managers, tenure, experience"],
+    ["investment_objective","Scheme objective"],
+    ["fund_house","AMC, total AUM, registrar"],
+  ];
+  const esc = s => { const d=document.createElement("div"); d.textContent=s; return d.innerHTML; };
+  const prettyUrl = u => { try{const x=new URL(u);return x.hostname.replace(/^www\./,"")+x.pathname.replace(/\/$/,"");}catch{return u;} };
+
+  function renderSections(){
+    document.getElementById("sections").innerHTML = SECTIONS.map(([k,d]) =>
+      `<div class="flex items-start gap-sm p-sm bg-surface-container-lowest border border-outline-variant rounded-lg">
+         <span class="material-symbols-outlined text-on-surface-variant text-[20px]">check_circle</span>
+         <div class="flex flex-col"><span class="text-label-bold">${k}</span>
+         <span class="text-[11px] text-on-surface-variant">${d}</span></div></div>`).join("");
+  }
+
+  async function init(){
+    renderSections();
+    try{
+      const res = await fetch(API_BASE+"/api/funds");
+      const data = await res.json();
+      const funds = data.funds || [];
+      document.getElementById("fundCount").textContent = `(${funds.length} funds)`;
+      document.getElementById("footer").textContent = "Last updated from sources: " + (data.last_updated || "—");
+
+      document.getElementById("funds").innerHTML = funds.map(f =>
+        `<a href="${esc(f.source_url)}" target="_blank" rel="noopener"
+            class="flex items-center gap-sm p-sm bg-surface-container-lowest border border-outline-variant rounded-lg hover:border-primary-container transition-colors group">
+           <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary">link</span>
+           <div class="flex flex-col overflow-hidden">
+             <span class="text-label-bold truncate">${esc(f.fund_name)}</span>
+             <span class="text-[11px] text-on-surface-variant truncate">${esc(f.category)} · NAV ${esc(f.nav)} · TER ${esc(f.expense_ratio)}</span>
+           </div></a>`).join("");
+
+      const urls = funds.map(f=>f.source_url).filter(Boolean)
+        .concat(["https://www.amfiindia.com/investor-corner","https://investor.sebi.gov.in/"]);
+      document.getElementById("urls").innerHTML = urls.map((u,i)=>
+        `<div class="text-mono-label p-xs bg-surface border border-outline-variant rounded flex items-center gap-xs overflow-hidden">
+           <span class="text-primary">${String(i+1).padStart(2,"0")}</span>
+           <span class="truncate">${esc(prettyUrl(u))}</span></div>`).join("");
+    }catch{
+      document.getElementById("funds").innerHTML =
+        `<div class="text-body-sm text-error p-sm">Could not load corpus — is the backend running?</div>`;
+    }
+  }
+  init();
+</script>
+</body>
+</html>

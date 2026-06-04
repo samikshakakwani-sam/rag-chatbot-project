@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "fund-assistant",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": ["-c", "cd '/Users/chandandatta/Desktop/Grow ChatBot' && exec .venv/bin/python -m uvicorn backend.main:app --host 127.0.0.1 --port ${PORT:-8077}"],
+      "autoPort": true
+    }
+  ]
+}
