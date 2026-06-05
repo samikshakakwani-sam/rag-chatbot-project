@@ -20,3 +20,6 @@ groq>=0.11.0
 
 # Phase 7 — Testing
 pytest>=8.0.0
+
+# Streamlit Community Cloud entry point (streamlit_app.py)
+streamlit>=1.39.0
