@@ -75,13 +75,16 @@ def process(raw: str, allowed_sources: List[str],
     # 2) Drop trailing sentences that carried the URL or are citation filler,
     #    so the prose doesn't end on a dangling "…visit" after URL removal.
     sentences = _split_sentences(text)
-    while sentences:
-        last = sentences[-1]
+    kept = list(sentences)
+    while kept:
+        last = kept[-1]
         if _URL_RE.search(last) or _CITATION_FILLER.match(last.strip()):
-            sentences.pop()
+            kept.pop()
             continue
         break
-    text = " ".join(sentences)
+    # Never strip the reply down to nothing (e.g. a single line that embeds its
+    # own "Source:" URL); fall back to the full text minus inline URLs.
+    text = " ".join(kept) if kept else " ".join(sentences)
 
     # 3) Strip any stray inline URLs + tidy whitespace/punctuation.
     text = _URL_RE.sub("", text)

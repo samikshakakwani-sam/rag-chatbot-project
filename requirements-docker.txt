@@ -1,0 +1,21 @@
+# Full stack — FastAPI app + Docker image (includes semantic retrieval).
+# Used by the Dockerfile. The lean Streamlit Cloud set is in requirements.txt.
+
+# Backend server
+fastapi==0.115.5
+uvicorn[standard]==0.32.1
+python-dotenv==1.0.1
+httpx==0.27.2
+
+# Scheduler
+apscheduler==3.10.4
+
+# Vector embedding & store (BGE-small + ChromaDB)
+chromadb>=0.5.0
+sentence-transformers>=3.0.0
+
+# LLM client (Groq)
+groq>=0.11.0
+
+# Testing
+pytest>=8.0.0

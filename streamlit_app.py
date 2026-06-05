@@ -13,6 +13,10 @@ import os
 
 import streamlit as st
 
+# Keyword-only retrieval on Streamlit's free tier: no PyTorch / ChromaDB loaded,
+# so it never OOMs. (The Docker/FastAPI deploy keeps full semantic search.)
+os.environ.setdefault("DISABLE_SEMANTIC", "1")
+
 # --- Bridge Streamlit secrets → env BEFORE importing backend (config reads env
 #     at import time). Streamlit secrets behave like a dict. ----------------------
 for _k in ("GROQ_API_KEY", "GROQ_MODEL", "LLM_PROVIDER"):

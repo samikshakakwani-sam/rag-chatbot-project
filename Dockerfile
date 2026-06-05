@@ -12,9 +12,9 @@ ENV PYTHONUNBUFFERED=1 \
 
 WORKDIR /app
 
-# Python dependencies (torch comes in via sentence-transformers; CPU wheels).
-COPY requirements.txt .
-RUN pip install -r requirements.txt
+# Python dependencies — full stack (torch via sentence-transformers; CPU wheels).
+COPY requirements-docker.txt .
+RUN pip install -r requirements-docker.txt
 
 # Application code + the minimal data the runtime needs (chunks.json only;
 # raw HTML and the prior chroma store are excluded via .dockerignore).

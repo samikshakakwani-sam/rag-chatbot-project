@@ -22,6 +22,7 @@ collection (with its BGE-small embedding function) are held in memory.
 from __future__ import annotations
 
 import logging
+import os
 from dataclasses import dataclass, field
 from typing import List, Optional
 
@@ -61,6 +62,12 @@ class RetrievalEngine:
         self.store = load_chunk_store()
         self._collection = None
         self._semantic_ready = False
+        # Lightweight mode for memory-constrained hosts (e.g. Streamlit free tier):
+        # skip chromadb + the embedding model entirely → keyword-only retrieval,
+        # zero torch/onnx in memory. Set DISABLE_SEMANTIC=1 to enable.
+        if os.getenv("DISABLE_SEMANTIC", "").lower() in ("1", "true", "yes"):
+            log.info("DISABLE_SEMANTIC set — keyword-only retrieval (no vector store).")
+            return
         try:
             import chromadb
             client = chromadb.PersistentClient(path=str(CHROMA_DIR))
